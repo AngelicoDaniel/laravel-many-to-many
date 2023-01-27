@@ -113,6 +113,12 @@ class PostController extends Controller
 
         $singolo_post->update($data);
 
+        if(array_key_exists('tags', $data)){
+            $singolo_post->tags()->sync($data['tags']);
+        }   else {
+            $singolo_post->tags()->sync([]);
+        }
+
         return redirect()->route('admin.posts.show', $singolo_post->id);
     }
 
