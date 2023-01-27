@@ -29,7 +29,7 @@
         </div>
 
 
-        <div class="my-3">
+        <div class="my-4">
             <label for="">Categories</label>
             <select class="form-control" name="category_id">
                 <option value="">Seleziona la categoria</option>
@@ -41,6 +41,15 @@
             </select>
         </div>
 
+        <div class="my-4">
+            <label for="">Tags:</label>
+                @foreach ($tags as $tag)
+                    <label for="">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ $post->tags->contains($tags) ? 'checked' : ''}}>
+                        {{ $tag->name }}
+                    </label>
+                @endforeach
+        </div>
 
         <button type="submit" class="btn btn-primary">Modifica</button>
     </form>
