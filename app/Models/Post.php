@@ -18,4 +18,8 @@ class Post extends Model
         //una categoria per ogni post
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function tags(){
+        return $this->belongsToMany('App\Models\Tag');
+    }
 }
