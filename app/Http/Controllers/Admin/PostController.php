@@ -77,7 +77,7 @@ class PostController extends Controller
             $newPost->tags()->sync( $data['tags'] );
         }
 
-        $mail = new CreatePostMail();
+        $mail = new CreatePostMail($newPost);
         $email_utente =  Auth::user()->email;
         Mail::to($email_utente)->send($mail);
 
