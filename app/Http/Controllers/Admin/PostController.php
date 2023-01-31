@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -50,7 +50,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        //dd($data);
 
         //validate
         $request->validate([
@@ -60,6 +60,12 @@ class PostController extends Controller
 
 
         $newPost = new Post();
+
+        if(array_key_exists('image', $data)){
+            $cover_url = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_url;
+        };
+
         $newPost->fill($data);
         $newPost->save();
 
