@@ -4,7 +4,7 @@
         <h1>Crea un post</h1>
     </div>
 
-    <form action="{{route('admin.posts.store')}}" method="POST">
+    <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="my-4">
@@ -43,10 +43,15 @@
             <label for="">Tags:</label>
                 @foreach ($tags as $tag)
                     <label for="">
-                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}">
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
                         {{ $tag->name }}
                     </label>
                 @endforeach
+        </div>
+
+        <div class="my-4">
+            <label for="">Aggiunta cover image</label>
+            <input type="file" name="image" class="form-control-file">
         </div>
 
         <button type="submit" class="btn btn-primary">Crea</button>
